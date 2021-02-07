@@ -16,13 +16,22 @@ namespace Algorithms.App
 
         static void Main()
         {
-            BenchmarkRunner.Run<Sorting>();
+            
+
+            if (false)
+            {
+                var arr = GenerateIntArray(10, 100);
+                Show(arr);
+                ISortingAlgorithm alg = new InsertionSort();
+                arr = alg.Sort(arr);
+                Show(arr); 
+            }
+            else
+            {
+                BenchmarkRunner.Run<Sorting>();
+            }
+
             Console.ReadLine();
-            //var arr = GenerateIntArray(10, 100);
-            //Show(arr);
-            //ISortingAlgorithm alg = new BubbleSort();
-            //arr = alg.Sort(arr);
-            //Show(arr);
         }
 
         static void Show(int[] arr)
@@ -53,31 +62,40 @@ namespace Algorithms.App
             random_arr = GenerateIntArray(size);
         }
 
-        [Benchmark]
-        public int[] BubbleSort()
+        int[] Copy()
         {
             var arr = new int[size];
             Array.Copy(random_arr, arr, size);
+            return arr;
+        }
+
+        [Benchmark]
+        public int[] BubbleSort()
+        {
+            
             var s = new BubbleSort();
-            return s.Sort(arr);
+            return s.Sort(Copy());
         }
 
         [Benchmark]
         public int[] SelectionSort()
         {
-            var arr = new int[size];
-            Array.Copy(random_arr, arr, size);
             var s = new SelectionSort();
-            return s.Sort(arr);
+            return s.Sort(Copy());
         }
 
         [Benchmark]
         public int[] MergeSort()
         {
-            var arr = new int[size];
-            Array.Copy(random_arr, arr, size);
             var s = new MergeSort();
-            return s.Sort(arr);
+            return s.Sort(Copy());
+        }
+
+        [Benchmark]
+        public int[] InsertionSort()
+        {
+            var s = new InsertionSort();
+            return s.Sort(Copy());
         }
 
         public int[] GenerateIntArray(int size, int maxValue = max)
