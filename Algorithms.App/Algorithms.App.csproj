@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Algorithms.DataStructures\Algorithms.DataStructures.csproj" />
     <ProjectReference Include="..\Algorithms.Sorting\Algorithms.Sorting.csproj" />
   </ItemGroup>
 
