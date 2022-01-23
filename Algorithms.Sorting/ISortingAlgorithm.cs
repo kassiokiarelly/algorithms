@@ -1,9 +1,6 @@
-﻿using System;
+﻿namespace Algorithms.Sorting;
 
-namespace Algorithms.Sorting
+public interface ISortingAlgorithm
 {
-    public interface ISortingAlgorithm
-    {
-        int[] Sort(int[] arr);
-    }
+    int[] Sort(int[] arr);
 }
